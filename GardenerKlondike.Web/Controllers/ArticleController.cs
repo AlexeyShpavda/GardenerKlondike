@@ -28,21 +28,41 @@ namespace GardenerKlondike.Web.Controllers
             Mapper = new Mapper();
         }
 
-        // GET: Article
-        public ActionResult Index()
+        [HttpGet]
+        public async Task<ActionResult> Index()
         {
-            var articleViewModels = Mapper.Map(ArticleRepository.GetAll());
+            try
+            {
+                var articleViewModels = Mapper.Map(await ArticleRepository.GetAllAsync().ConfigureAwait(false));
 
-            return View(articleViewModels);
+                return View(articleViewModels);
+            }
+            catch(Exception e)
+            {
+                ViewBag.Error = e.Message;
+
+                return View();
+            }
         }
 
-        // GET: Article/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            try
+            {
+                var articleViewModel = Mapper.Map(await ArticleRepository.GetAsync(id).ConfigureAwait(false));
+
+                return View(articleViewModel);
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e.Message;
+
+                return View();
+            }
         }
 
-        // GET: Article/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -54,42 +74,69 @@ namespace GardenerKlondike.Web.Controllers
         {
             try
             {
-                var currentUser = GetCurrentUser();
+                if (!ModelState.IsValid)
+                {
+                    return View(articleViewModel);
+                }
 
+                var currentUser = GetCurrentUser();
                 articleViewModel.Author = currentUser.Email;
 
                 var articleEntity = Mapper.Map(articleViewModel);
 
                 ArticleRepository.Add(articleEntity);
 
-                await ArticleRepository.SaveAsync();
+                await ArticleRepository.SaveAsync().ConfigureAwait(false);
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception e)
             {
+                ViewBag.Error = e.Message;
+
                 return View();
             }
         }
 
-        // GET: Article/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Article/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [HttpGet]
+        public async Task<ActionResult> Edit(int id)
         {
             try
             {
-                // TODO: Add update logic here
+                var articleViewModel = Mapper.Map(await ArticleRepository.GetAsync(id).ConfigureAwait(false));
+
+                return View(articleViewModel);
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e.Message;
+
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(ArticleViewModel articleViewModel)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View(articleViewModel);
+                }
+
+                var articleEntity = Mapper.Map(articleViewModel);
+
+                ArticleRepository.Update(articleEntity);
+
+                await ArticleRepository.SaveAsync().ConfigureAwait(false);
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
+                ViewBag.Error = e.Message;
+
                 return View();
             }
         }

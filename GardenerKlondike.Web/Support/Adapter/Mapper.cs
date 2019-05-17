@@ -22,6 +22,7 @@ namespace GardenerKlondike.Web.Support.Adapter
         {
             return new ArticleViewModel
             {
+                Id = article.Id,
                 Title = article.Title,
                 Body = article.Body,
                 Author = article.Author
