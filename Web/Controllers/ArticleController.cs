@@ -1,13 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Web.Models;
 
 namespace Web.Controllers
 {
+    [Authorize]
     public class ArticleController : Controller
     {
+        protected ApplicationDbContext ApplicationDbContext { get; set; }
+        protected UserManager<ApplicationUser> UserManager { get; set; }
+
+        public ArticleController()
+        {
+            ApplicationDbContext = new ApplicationDbContext();
+            UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(ApplicationDbContext));
+        }
         // GET: Article
         public ActionResult Index()
         {
@@ -28,11 +42,15 @@ namespace Web.Controllers
 
         // POST: Article/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ArticleViewModel articleViewModel)
         {
             try
             {
-                // TODO: Add insert logic here
+                var currentUser = GetCurrentUser();
+
+                articleViewModel.Author = currentUser.Email;
+
+
 
                 return RedirectToAction("Index");
             }
@@ -84,6 +102,13 @@ namespace Web.Controllers
             {
                 return View();
             }
+        }
+
+        private ApplicationUser GetCurrentUser()
+        {
+            return System.Web.HttpContext.Current.GetOwinContext()
+                .GetUserManager<ApplicationUserManager>()
+                .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
         }
     }
 }

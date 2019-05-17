@@ -20,5 +20,17 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    width: 100%;
+}
+
+.center-lol {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.centerBlock {
+    width: 100%;
+    display: table;
+    margin: auto;
 }
