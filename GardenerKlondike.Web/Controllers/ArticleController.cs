@@ -68,7 +68,6 @@ namespace GardenerKlondike.Web.Controllers
             return View();
         }
 
-        // POST: Article/Create
         [HttpPost]
         public async Task<ActionResult> Create(ArticleViewModel articleViewModel)
         {
@@ -141,12 +140,13 @@ namespace GardenerKlondike.Web.Controllers
             }
         }
 
-        // GET: Article/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
             try
             {
                 await ArticleRepository.DeleteAsync(id).ConfigureAwait(false);
+
+                await ArticleRepository.SaveAsync().ConfigureAwait(false);
 
                 return RedirectToAction("Index");
             }

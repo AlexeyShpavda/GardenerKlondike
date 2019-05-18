@@ -4,28 +4,19 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.Title)</h2>
 
 <div>
-    <h4>ArticleViewModel</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Body)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Body)
+            @Html.Raw(Html.Encode(Model.Body).Replace("\n","<br/>"))
         </dd>
-
+        
         <dt>
             @Html.DisplayNameFor(model => model.Author)
         </dt>
@@ -33,7 +24,6 @@
         <dd>
             @Html.DisplayFor(model => model.Author)
         </dd>
-
     </dl>
 </div>
 <p>
