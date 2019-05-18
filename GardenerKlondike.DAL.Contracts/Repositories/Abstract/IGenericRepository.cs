@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace GardenerKlondike.DAL.Contracts.Repositories.Abstract

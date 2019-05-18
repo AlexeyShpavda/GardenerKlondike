@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace GardenerKlondike.Web.Controllers
 {
+    [Authorize]
     public class PersonalAreaController : Controller
     {
         private IGoalRepository GoalRepository { get; }
