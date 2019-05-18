@@ -38,5 +38,38 @@ namespace GardenerKlondike.Web.Support.Adapter
         {
             return articleViewModels.Select(Map);
         }
+
+        public Goal Map(GoalViewModel goalViewModel)
+        {
+            return new Goal()
+            {
+                Name = goalViewModel.Name,
+                Note = goalViewModel.Note,
+                IsCompleted = goalViewModel.IsCompleted,
+                User = goalViewModel.User
+            };
+        }
+
+        public GoalViewModel Map(Goal goal)
+        {
+            return new GoalViewModel()
+            {
+                Id = goal.Id,
+                Name = goal.Name,
+                Note = goal.Note,
+                IsCompleted = goal.IsCompleted,
+                User = goal.User
+            };
+        }
+
+        public IEnumerable<GoalViewModel> Map(IEnumerable<Goal> goals)
+        {
+            return goals.Select(Map);
+        }
+
+        public IEnumerable<Goal> Map(IEnumerable<GoalViewModel> goalViewModels)
+        {
+            return goalViewModels.Select(Map);
+        }
     }
 }

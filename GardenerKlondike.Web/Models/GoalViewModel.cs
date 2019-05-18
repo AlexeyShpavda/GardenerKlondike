@@ -5,9 +5,12 @@ namespace GardenerKlondike.Web.Models
 {
     public class GoalViewModel
     {
+        [HiddenInput(DisplayValue = false)]
+        public int Id { get; set; }
+
         [Required]
-        [StringLength(50, ErrorMessage = "Title must be less than 50 characters")]
-        public string Title { get; set; }
+        [StringLength(50, ErrorMessage = "Name must be less than 50 characters")]
+        public string Name { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
@@ -15,7 +18,6 @@ namespace GardenerKlondike.Web.Models
 
         public bool IsCompleted { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
         public string User { get; set; }
     }
 }
