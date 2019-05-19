@@ -53,6 +53,9 @@
     <Compile Include="Article.cs">
       <DependentUpon>GardenerKlondike.tt</DependentUpon>
     </Compile>
+    <Compile Include="CalendarEvent.cs">
+      <DependentUpon>GardenerKlondike.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity.cs" />
     <Compile Include="GardenerKlondike.Context.cs">
       <AutoGen>True</AutoGen>

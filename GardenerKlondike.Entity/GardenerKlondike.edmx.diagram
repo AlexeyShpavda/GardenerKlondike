@@ -6,7 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="4bc1a37b0d834e6b9b7837e80e5c81cf" Name="Diagram1" >
         <EntityTypeShape EntityType="GardenerKlondike.Article" Width="1.5" PointX="3.25" PointY="1.125" />
-        <EntityTypeShape EntityType="GardenerKlondike.Goal" Width="1.5" PointX="7.625" PointY="1.375" />
+        <EntityTypeShape EntityType="GardenerKlondike.Goal" Width="1.5" PointX="5.125" PointY="1.125" />
+        <EntityTypeShape EntityType="GardenerKlondike.CalendarEvent" Width="1.5" PointX="0.75" PointY="1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

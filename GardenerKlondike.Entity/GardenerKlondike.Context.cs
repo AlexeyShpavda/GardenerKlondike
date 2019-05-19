@@ -27,5 +27,6 @@ namespace GardenerKlondike.Entity
     
         public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<Goal> Goals { get; set; }
+        public virtual DbSet<CalendarEvent> CalendarEvents { get; set; }
     }
 }
