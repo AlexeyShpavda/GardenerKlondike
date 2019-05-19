@@ -13,14 +13,18 @@ using Microsoft.AspNet.Identity.Owin;
 namespace GardenerKlondike.Web.Controllers
 {
     [Authorize]
-    public class CalendarEventController : Controller
+    public class GoalController : Controller
     {
+        private IGoalRepository GoalRepository { get; }
+
         private ICalendarEventRepository CalendarEventRepository { get; }
 
         private IMapper Mapper { get; }
 
-        public CalendarEventController()
+        public GoalController()
         {
+            GoalRepository = new GoalRepository();
+
             CalendarEventRepository = new CalendarEventRepository();
 
             Mapper = new Mapper();
@@ -31,9 +35,9 @@ namespace GardenerKlondike.Web.Controllers
         {
             try
             {
-                var calendarEventViewModels = Mapper.Map(await CalendarEventRepository.GetAllAsync().ConfigureAwait(false));
+                var goalViewModels = Mapper.Map(await GoalRepository.GetAllAsync().ConfigureAwait(false));
 
-                return View(calendarEventViewModels);
+                return View(goalViewModels);
             }
             catch (Exception e)
             {
@@ -48,9 +52,9 @@ namespace GardenerKlondike.Web.Controllers
         {
             try
             {
-                var calendarEventViewModel = Mapper.Map(await CalendarEventRepository.GetAsync(id).ConfigureAwait(false));
+                var goalViewModel = Mapper.Map(await GoalRepository.GetAsync(id).ConfigureAwait(false));
 
-                return View(calendarEventViewModel);
+                return View(goalViewModel);
             }
             catch (Exception e)
             {
@@ -67,23 +71,23 @@ namespace GardenerKlondike.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(CalendarEventViewModel calendarEventViewModel)
+        public async Task<ActionResult> Create(GoalViewModel goalViewModel)
         {
             try
             {
                 if (!ModelState.IsValid)
                 {
-                    return View(calendarEventViewModel);
+                    return View(goalViewModel);
                 }
 
                 var currentUser = GetCurrentUser();
-                calendarEventViewModel.User = currentUser.Email;
+                goalViewModel.User = currentUser.Email;
 
-                var calendarEventEntity = Mapper.Map(calendarEventViewModel);
+                var goalEntity = Mapper.Map(goalViewModel);
 
-                CalendarEventRepository.Add(calendarEventEntity);
+                GoalRepository.Add(goalEntity);
 
-                await CalendarEventRepository.SaveAsync().ConfigureAwait(false);
+                await GoalRepository.SaveAsync().ConfigureAwait(false);
 
                 return RedirectToAction("Index");
             }
@@ -100,9 +104,9 @@ namespace GardenerKlondike.Web.Controllers
         {
             try
             {
-                var calendarEventViewModel = Mapper.Map(await CalendarEventRepository.GetAsync(id).ConfigureAwait(false));
+                var goalViewModel = Mapper.Map(await GoalRepository.GetAsync(id).ConfigureAwait(false));
 
-                return View(calendarEventViewModel);
+                return View(goalViewModel);
             }
             catch (Exception e)
             {
@@ -113,20 +117,20 @@ namespace GardenerKlondike.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Edit(CalendarEventViewModel calendarEventViewModel)
+        public async Task<ActionResult> Edit(GoalViewModel goalViewModel)
         {
             try
             {
                 if (!ModelState.IsValid)
                 {
-                    return View(calendarEventViewModel);
+                    return View(goalViewModel);
                 }
 
-                var calendarEventEntity = Mapper.Map(calendarEventViewModel);
+                var goalEntity = Mapper.Map(goalViewModel);
 
-                CalendarEventRepository.Update(calendarEventEntity);
+                GoalRepository.Update(goalEntity);
 
-                await CalendarEventRepository.SaveAsync().ConfigureAwait(false);
+                await GoalRepository.SaveAsync().ConfigureAwait(false);
 
                 return RedirectToAction("Index");
             }
@@ -142,9 +146,9 @@ namespace GardenerKlondike.Web.Controllers
         {
             try
             {
-                await CalendarEventRepository.DeleteAsync(id).ConfigureAwait(false);
+                await GoalRepository.DeleteAsync(id).ConfigureAwait(false);
 
-                await CalendarEventRepository.SaveAsync().ConfigureAwait(false);
+                await GoalRepository.SaveAsync().ConfigureAwait(false);
 
                 return RedirectToAction("Index");
             }
@@ -161,6 +165,24 @@ namespace GardenerKlondike.Web.Controllers
             return System.Web.HttpContext.Current.GetOwinContext()
                 .GetUserManager<ApplicationUserManager>()
                 .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+        }
+
+        public async Task<JsonResult> GetEvents()
+        {
+            try
+            {
+                var events = await CalendarEventRepository.GetAllAsync().ConfigureAwait(false);
+
+                return Json(events, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(new
+                {
+                    Success = false,
+                    e.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }
