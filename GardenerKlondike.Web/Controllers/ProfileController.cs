@@ -17,11 +17,15 @@ namespace GardenerKlondike.Web.Controllers
     {
         private IGoalRepository GoalRepository { get; }
 
+        private ICalendarEventRepository CalendarEventRepository { get; }
+
         private IMapper Mapper { get; }
 
         public ProfileController()
         {
             GoalRepository = new GoalRepository();
+
+            CalendarEventRepository = new CalendarEventRepository();
 
             Mapper = new Mapper();
         }
@@ -161,6 +165,24 @@ namespace GardenerKlondike.Web.Controllers
             return System.Web.HttpContext.Current.GetOwinContext()
                 .GetUserManager<ApplicationUserManager>()
                 .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+        }
+
+        public async Task<JsonResult> GetEvents()
+        {
+            try
+            {
+                var events = await CalendarEventRepository.GetAllAsync().ConfigureAwait(false);
+
+                return Json(events, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(new
+                {
+                    Success = false,
+                    e.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

@@ -40,6 +40,7 @@
     <Property Name="End" Type="datetime" Nullable="true" />
     <Property Name="ThemeColor" Type="nvarchar(max)" Nullable="true" />
     <Property Name="IsFullDay" Type="bit" Nullable="false" />
+    <Property Name="User" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -80,6 +81,7 @@
           <Property Name="End" Type="DateTime" Nullable="true" />
           <Property Name="ThemeColor" Type="String" Nullable="true" />
           <Property Name="IsFullDay" Type="Boolean" Nullable="false" />
+          <Property Name="User" Type="String" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -118,6 +120,7 @@
           <ScalarProperty Name="End" ColumnName="End" />
           <ScalarProperty Name="ThemeColor" ColumnName="ThemeColor" />
           <ScalarProperty Name="IsFullDay" ColumnName="IsFullDay" />
+          <ScalarProperty Name="User" ColumnName="User" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

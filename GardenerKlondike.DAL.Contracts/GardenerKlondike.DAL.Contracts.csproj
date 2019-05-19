@@ -44,6 +44,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Abstract\IGenericRepository.cs" />
     <Compile Include="Repositories\IArticleRepository.cs" />
+    <Compile Include="Repositories\ICalendarEventRepository.cs" />
     <Compile Include="Repositories\IGoalRepository.cs" />
   </ItemGroup>
   <ItemGroup>

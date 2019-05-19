@@ -20,5 +20,6 @@ namespace GardenerKlondike.Entity
         public Nullable<System.DateTime> End { get; set; }
         public string ThemeColor { get; set; }
         public bool IsFullDay { get; set; }
+        public string User { get; set; }
     }
 }
