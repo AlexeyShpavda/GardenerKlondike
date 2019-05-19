@@ -4,18 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Personal Area</h2>
+<h2>Profile</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Note)
+            Goal
         </th>
         <th>
             @Html.DisplayNameFor(model => model.IsCompleted)
@@ -30,10 +27,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Note)
-        </td>
-        <td>
+        <td width="10">
             @Html.DisplayFor(modelItem => item.IsCompleted)
         </td>
         <td>

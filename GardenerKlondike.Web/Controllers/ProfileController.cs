@@ -13,13 +13,13 @@ using Microsoft.AspNet.Identity.Owin;
 namespace GardenerKlondike.Web.Controllers
 {
     [Authorize]
-    public class PersonalAreaController : Controller
+    public class ProfileController : Controller
     {
         private IGoalRepository GoalRepository { get; }
 
         private IMapper Mapper { get; }
 
-        public PersonalAreaController()
+        public ProfileController()
         {
             GoalRepository = new GoalRepository();
 
@@ -115,12 +115,15 @@ namespace GardenerKlondike.Web.Controllers
         [HttpPost]
         public async Task<ActionResult> Edit(GoalViewModel goalViewModel)
         {
-            try
-            {
+            //try
+            //{
                 if (!ModelState.IsValid)
                 {
                     return View(goalViewModel);
                 }
+
+                //var currentUser = GetCurrentUser();
+                //goalViewModel.User = currentUser.Email;
 
                 var goalEntity = Mapper.Map(goalViewModel);
 
@@ -129,13 +132,13 @@ namespace GardenerKlondike.Web.Controllers
                 await GoalRepository.SaveAsync().ConfigureAwait(false);
 
                 return RedirectToAction("Index");
-            }
-            catch (Exception e)
-            {
-                ViewBag.Error = e.Message;
+            //}
+            //catch (Exception e)
+            //{
+            //    ViewBag.Error = e.Message;
 
-                return View();
-            }
+            //    return View();
+            //}
         }
 
         public async Task<ActionResult> Delete(int id)

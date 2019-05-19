@@ -12,6 +12,7 @@ namespace GardenerKlondike.Web.Support.Adapter
         {
             return new Article
             {
+                Id = articleViewModel.Id,
                 Title = articleViewModel.Title,
                 Body = articleViewModel.Body,
                 Author = articleViewModel.Author
@@ -43,6 +44,7 @@ namespace GardenerKlondike.Web.Support.Adapter
         {
             return new Goal()
             {
+                Id = goalViewModel.Id,
                 Name = goalViewModel.Name,
                 Note = goalViewModel.Note,
                 IsCompleted = goalViewModel.IsCompleted,

@@ -17,24 +17,24 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-8 col-md-offset-2">
+                @Html.LabelFor(model => model.Title, new { @class = "control-label" })
                 @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Body, 10, 55, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-8 col-md-offset-2">
+                @Html.LabelFor(model => model.Body, new { @class = "control-label" })
+                @Html.TextAreaFor(model => model.Body, 10, 100, new { @class = "form-control width100" })
                 @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-2 col-md-offset-2">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </div>
     </div>

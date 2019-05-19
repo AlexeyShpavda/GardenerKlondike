@@ -1,0 +1,41 @@
+﻿@model GardenerKlondike.Web.Models.GoalViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+
+        <dd>
+            @Html.Raw(Html.Encode(Model.Note).Replace("\n", "<br/>"))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCompleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsCompleted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
