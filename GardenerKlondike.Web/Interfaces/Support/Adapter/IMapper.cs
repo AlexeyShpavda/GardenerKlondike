@@ -21,5 +21,13 @@ namespace GardenerKlondike.Web.Interfaces.Support.Adapter
         IEnumerable<GoalViewModel> Map(IEnumerable<Goal> goals);
 
         IEnumerable<Goal> Map(IEnumerable<GoalViewModel> goalViewModels);
+
+        CalendarEvent Map(CalendarEventViewModel calendarEventViewModel);
+
+        CalendarEventViewModel Map(CalendarEvent calendarEvent);
+
+        IEnumerable<CalendarEventViewModel> Map(IEnumerable<CalendarEvent> calendarEvents);
+
+        IEnumerable<CalendarEvent> Map(IEnumerable<CalendarEventViewModel> calendarEventViewModels);
     }
 }

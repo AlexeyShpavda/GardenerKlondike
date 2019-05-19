@@ -42,7 +42,7 @@ namespace GardenerKlondike.Web.Support.Adapter
 
         public Goal Map(GoalViewModel goalViewModel)
         {
-            return new Goal()
+            return new Goal
             {
                 Id = goalViewModel.Id,
                 Name = goalViewModel.Name,
@@ -54,7 +54,7 @@ namespace GardenerKlondike.Web.Support.Adapter
 
         public GoalViewModel Map(Goal goal)
         {
-            return new GoalViewModel()
+            return new GoalViewModel
             {
                 Id = goal.Id,
                 Name = goal.Name,
@@ -72,6 +72,46 @@ namespace GardenerKlondike.Web.Support.Adapter
         public IEnumerable<Goal> Map(IEnumerable<GoalViewModel> goalViewModels)
         {
             return goalViewModels.Select(Map);
+        }
+
+        public CalendarEvent Map(CalendarEventViewModel calendarEventViewModel)
+        {
+            return new CalendarEvent
+            {
+                Id = calendarEventViewModel.Id,
+                Subject = calendarEventViewModel.Subject,
+                Description = calendarEventViewModel.Description,
+                Start = calendarEventViewModel.Start,
+                End = calendarEventViewModel.End,
+                ThemeColor = calendarEventViewModel.ThemeColor,
+                IsFullDay = calendarEventViewModel.IsFullDay,
+                User = calendarEventViewModel.User
+            };
+        }
+
+        public CalendarEventViewModel Map(CalendarEvent calendarEvent)
+        {
+            return new CalendarEventViewModel
+            {
+                Id = calendarEvent.Id,
+                Subject = calendarEvent.Subject,
+                Description = calendarEvent.Description,
+                Start = calendarEvent.Start,
+                End = calendarEvent.End,
+                ThemeColor = calendarEvent.ThemeColor,
+                IsFullDay = calendarEvent.IsFullDay,
+                User = calendarEvent.User
+            };
+        }
+
+        public IEnumerable<CalendarEventViewModel> Map(IEnumerable<CalendarEvent> calendarEvents)
+        {
+            return calendarEvents.Select(Map);
+        }
+
+        public IEnumerable<CalendarEvent> Map(IEnumerable<CalendarEventViewModel> calendarEventViewModels)
+        {
+            return calendarEventViewModels.Select(Map);
         }
     }
 }
