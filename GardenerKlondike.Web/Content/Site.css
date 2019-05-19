@@ -3,21 +3,43 @@
     padding-bottom: 20px;
 }
 
-/* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
 .dl-horizontal dt {
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
 .width100 {
     width: 100%;
 }
 
+.home-header {
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 15px;
+    color: inherit;
+    background-image: url('../Images/homeHeader.jpg');
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+
+.home-main-title {
+    padding: 40px 0 30px 0;
+    color: whitesmoke;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+}
+
+.home-main-text-size1 {
+    font-size: 80px;
+}
+
+.home-main-text-size2 {
+    font-size: 50px;
+}
