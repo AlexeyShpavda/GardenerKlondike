@@ -1,22 +1,19 @@
 ﻿@model GardenerKlondike.Web.Models.GoalViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
 }
 
-<h2>Edit Goal</h2>
+<h2>Create Goal</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.Id)
-    @Html.HiddenFor(model => model.User)
-
     <div class="form-group">
         <div class="col-md-8 col-md-offset-2">
             @Html.LabelFor(model => model.Name, new { @class = "control-label" })
@@ -35,22 +32,22 @@
 
     <div class="form-group">
         <div class="col-md-8 col-md-offset-2">
-            @Html.LabelFor(model => model.IsCompleted, htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.IsCompleted, new {@class = "control-label"})
             @Html.EditorFor(model => model.IsCompleted)
-            @Html.ValidationMessageFor(model => model.IsCompleted, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.IsCompleted, "", new {@class = "text-danger"})
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-md-2 col-md-offset-2">
-            <input type="submit" value="Save" class="btn btn-primary" />
+            <input type="submit" value="Create" class="btn btn-primary" />
         </div>
     </div>
 </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to list", "Index", null, new { @class = "btn btn-default" })
 </div>
 
 @section Scripts {

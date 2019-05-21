@@ -18,8 +18,10 @@ namespace GardenerKlondike.Web.Models
         public string Description { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime Start { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime? End { get; set; }
 
         [Required]
@@ -28,6 +30,7 @@ namespace GardenerKlondike.Web.Models
         [Required]
         public bool IsFullDay { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         public string User { get; set; }
     }
 }

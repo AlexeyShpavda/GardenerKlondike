@@ -173,6 +173,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\CalendarEventController.cs" />
+    <Compile Include="Controllers\GoalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
@@ -355,13 +356,17 @@
     <Content Include="Views\Article\Details.cshtml" />
     <Content Include="Views\Article\Edit.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
-    <Content Include="Views\Profile\Details.cshtml" />
-    <Content Include="Views\Profile\Create.cshtml" />
-    <Content Include="Views\Profile\Edit.cshtml" />
+    <Content Include="Views\CalendarEvent\Index.cshtml" />
+    <Content Include="Views\CalendarEvent\Details.cshtml" />
+    <Content Include="Views\CalendarEvent\Create.cshtml" />
+    <Content Include="Views\CalendarEvent\Edit.cshtml" />
+    <Content Include="Views\Goal\Edit.cshtml" />
+    <Content Include="Views\Goal\Details.cshtml" />
+    <Content Include="Views\Goal\Create.cshtml" />
+    <Content Include="Views\Goal\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CalendarEvent\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

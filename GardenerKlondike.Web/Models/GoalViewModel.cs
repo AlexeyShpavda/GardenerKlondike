@@ -18,6 +18,7 @@ namespace GardenerKlondike.Web.Models
 
         public bool IsCompleted { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         public string User { get; set; }
     }
 }
