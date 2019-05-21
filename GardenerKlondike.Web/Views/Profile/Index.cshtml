@@ -117,10 +117,10 @@
                     events: events,
                     eventClick: function(calEvent, jsEvent, view) {
                         $('#calendar-modal #event-title').text(calEvent.title);
-                        var $description = $('</div>');
-                        $description.append($('<p/>').html('<b>Start:</b>' + calEvent.start.format("DD-MMM-YYYY HH:mm a")));
+                        var $description = $('<div/>');
+                        $description.append($('<p/>').html('<b>Start:</b>' + calEvent.start.format("DD-MMM-YYYY")));
                         if (calEvent.end != null) {
-                            $description.append($('<p/>').html('<b>End:</b>' + calEvent.end.format("DD-MMM-YYYY HH:mm a")));
+                            $description.append($('<p/>').html('<b>End:</b>' + calEvent.end.format("DD-MMM-YYYY")));
                         }
                         $description.append($('<p/>').html('<b>Description:</b>' + calEvent.description));
                         $('#calendar-modal #details').empty().html($description);
