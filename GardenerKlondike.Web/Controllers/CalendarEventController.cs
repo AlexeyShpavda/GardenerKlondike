@@ -31,7 +31,8 @@ namespace GardenerKlondike.Web.Controllers
         {
             try
             {
-                var calendarEventViewModels = Mapper.Map(await CalendarEventRepository.GetAllAsync().ConfigureAwait(false));
+                var calendarEventViewModels = Mapper.Map(await CalendarEventRepository
+                    .GetAllPersonalEventsAsync(GetCurrentUser().Email).ConfigureAwait(false));
 
                 return View(calendarEventViewModels);
             }

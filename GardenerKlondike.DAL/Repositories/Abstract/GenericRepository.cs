@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using GardenerKlondike.DAL.Contracts.Repositories.Abstract;
@@ -62,6 +63,11 @@ namespace GardenerKlondike.DAL.Repositories.Abstract
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await DbSet.AsNoTracking().ToListAsync().ConfigureAwait(false);
+        }
+
+        public async Task<IEnumerable<TEntity>> FindAllAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await DbSet.AsNoTracking().Where(predicate).ToListAsync().ConfigureAwait(false);
         }
 
         public async Task<int> SaveAsync()

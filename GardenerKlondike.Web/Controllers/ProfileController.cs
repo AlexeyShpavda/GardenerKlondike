@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using GardenerKlondike.DAL.Contracts.Repositories;
 using GardenerKlondike.DAL.Repositories;
 using GardenerKlondike.Web.Interfaces.Support.Adapter;
+using GardenerKlondike.Web.Models;
 using GardenerKlondike.Web.Support.Adapter;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace GardenerKlondike.Web.Controllers
 {
@@ -31,9 +35,11 @@ namespace GardenerKlondike.Web.Controllers
         {
             try
             {
-                var goalViewModels = Mapper.Map(await GoalRepository.GetAllAsync().ConfigureAwait(false));
+                var goalViewModels = Mapper.Map(await GoalRepository.GetAllPersonalGoalsAsync(GetCurrentUser().Email)
+                    .ConfigureAwait(false));
 
-                ViewBag.events = Mapper.Map(await CalendarEventRepository.GetAllAsync().ConfigureAwait(false));
+                ViewBag.events = Mapper.Map(await CalendarEventRepository
+                    .GetAllPersonalEventsAsync(GetCurrentUser().Email).ConfigureAwait(false));
 
                 return View(goalViewModels);
             }
@@ -43,6 +49,13 @@ namespace GardenerKlondike.Web.Controllers
 
                 return View();
             }
+        }
+
+        private ApplicationUser GetCurrentUser()
+        {
+            return System.Web.HttpContext.Current.GetOwinContext()
+                .GetUserManager<ApplicationUserManager>()
+                .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
         }
 
         public async Task<JsonResult> GetEvents()

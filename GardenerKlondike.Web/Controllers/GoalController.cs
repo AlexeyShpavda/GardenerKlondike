@@ -35,7 +35,8 @@ namespace GardenerKlondike.Web.Controllers
         {
             try
             {
-                var goalViewModels = Mapper.Map(await GoalRepository.GetAllAsync().ConfigureAwait(false));
+                var goalViewModels = Mapper.Map(await GoalRepository.GetAllPersonalGoalsAsync(GetCurrentUser().Email)
+                    .ConfigureAwait(false));
 
                 return View(goalViewModels);
             }
