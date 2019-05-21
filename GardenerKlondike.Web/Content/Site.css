@@ -43,3 +43,16 @@
 .home-main-text-size2 {
     font-size: 50px;
 }
+
+.home-navbar-color-black {
+    background-color: black;
+    padding: 7px 0 7px 0;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.home-site-name {
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+}
