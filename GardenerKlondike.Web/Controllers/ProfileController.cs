@@ -35,13 +35,18 @@ namespace GardenerKlondike.Web.Controllers
         {
             try
             {
-                var goalViewModels = Mapper.Map(await GoalRepository.GetAllPersonalGoalsAsync(GetCurrentUser().Email)
-                    .ConfigureAwait(false));
+                var currentUserEmail = GetCurrentUser().Email;
 
-                ViewBag.events = Mapper.Map(await CalendarEventRepository
-                    .GetAllPersonalEventsAsync(GetCurrentUser().Email).ConfigureAwait(false));
+                var profileViewModel = new ProfileViewModel
+                {
+                    GoalViewModels = Mapper.Map(await GoalRepository.GetAllPersonalGoalsAsync(currentUserEmail)
+                        .ConfigureAwait(false)),
 
-                return View(goalViewModels);
+                    CalendarEventViewModels = Mapper.Map(await CalendarEventRepository
+                        .GetAllPersonalEventsAsync(currentUserEmail).ConfigureAwait(false))
+                };
+
+                return View(profileViewModel);
             }
             catch (Exception e)
             {

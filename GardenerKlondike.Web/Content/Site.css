@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: azure;
 }
 
 .body-content {
@@ -55,4 +56,11 @@
     text-transform: uppercase;
     font-size: 20px;
     font-weight: bold;
+}
+
+.tab-main-header {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px;
 }

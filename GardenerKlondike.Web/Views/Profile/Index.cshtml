@@ -1,17 +1,17 @@
-﻿@using GardenerKlondike.Web.Models
-@model IEnumerable<GardenerKlondike.Web.Models.GoalViewModel>
+﻿@model GardenerKlondike.Web.Models.ProfileViewModel
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Profile</h2>
+<h2 class="tab-main-header">Profile</h2>
 
 <div class="container">
     <div class="row">
         <div class="col-md-3">
+            <h3>Events</h3>
             <p>
-                @Html.ActionLink("Add New Event", "Create", "CalendarEvent", null, new { @class = "btn btn-default" })
+                @Html.ActionLink("Add New Event", "Create", "CalendarEvent", null, new {@class = "btn btn-default"})
             </p>
             <table class="table">
                 <tr>
@@ -23,15 +23,16 @@
                     </th>
                 </tr>
 
-                @foreach (CalendarEventViewModel item in ViewBag.events) {
+                @foreach (var item in Model.CalendarEventViewModels)
+                {
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Subject)
                         </td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                @Html.ActionLink("Detail", "Details", "CalendarEvent", new { id = item.Id }, new { @class = "btn btn-warning" })
-                                @Html.ActionLink("Edit", "Edit", "CalendarEvent", new { id = item.Id }, new { @class = "btn btn-success" })
+                                @Html.ActionLink("Detail", "Details", "CalendarEvent", new {id = item.Id}, new {@class = "btn btn-warning"})
+                                @Html.ActionLink("Edit", "Edit", "CalendarEvent", new {id = item.Id}, new {@class = "btn btn-success"})
                                 @Html.ActionLink("Delete", "Delete", "CalendarEvent", new {id = item.Id}, new
                                 {
                                     @class = "btn btn-danger",
@@ -46,6 +47,7 @@
 
         </div>
         <div class="col-md-9">
+            <h3>Calendar</h3>
             <div id="calendar"></div>
 
             <div id="calendar-modal" class="modal fade" role="dialog">
@@ -133,46 +135,47 @@
     </script>
 }
 
-<div class="container">
-    <p>
-        @Html.ActionLink("Add New Goal", "Create", "Goal", null, new { @class = "btn btn-default" })
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                Goal
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsCompleted)
-            </th>
-            <th>
-                Actions
-            </th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+    <div class="container">
+        <h3>Goals</h3>
+        <p>
+            @Html.ActionLink("Add New Goal", "Create", "Goal", null, new { @class = "btn btn-default" })
+        </p>
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td width="10">
-                    @Html.DisplayFor(modelItem => item.IsCompleted)
-                </td>
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        @Html.ActionLink("Details", "Details", "Goal", new { id = item.Id }, new { @class = "btn btn-warning" })
-                        @Html.ActionLink("Edit", "Edit", "Goal", new { id = item.Id }, new { @class = "btn btn-success" })
-                        @Html.ActionLink("Delete", "Delete", "Goal", new {id = item.Id}, new
-                        {
-                            @class = "btn btn-danger",
-                            onclick = "return confirm('Are you sure you wish to delete this Event?');"
-                        })
-                    </div>
-                </td>
+                <th>
+                    Goal
+                </th>
+                <th>
+                    IsCompleted
+                </th>
+                <th>
+                    Actions
+                </th>
             </tr>
-        }
 
-    </table>
+            @foreach (var item in Model.GoalViewModels)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td width="10">
+                        @Html.DisplayFor(modelItem => item.IsCompleted)
+                    </td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            @Html.ActionLink("Details", "Details", "Goal", new { id = item.Id }, new { @class = "btn btn-warning" })
+                            @Html.ActionLink("Edit", "Edit", "Goal", new { id = item.Id }, new { @class = "btn btn-success" })
+                            @Html.ActionLink("Delete", "Delete", "Goal", new {id = item.Id}, new
+                            {
+                                @class = "btn btn-danger",
+                                onclick = "return confirm('Are you sure you wish to delete this Event?');"
+                            })
+                        </div>
+                    </td>
+                </tr>
+            }
 
-</div>
+        </table>
+
+    </div>
