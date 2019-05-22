@@ -23,26 +23,27 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Author)
-        </td>
-        <td>
-            <div class="btn-group" role="group" aria-label="Basic example">
-                @Html.ActionLink("Read", "Details", new { id = item.Id }, new { @class = "btn btn-warning" })
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })
-                @Html.ActionLink("Delete", "Delete", new {id = item.Id}, new
-                {
-                    @class = "btn btn-danger",
-                    onclick = "return confirm('Are you sure you wish to delete this Event?');"
-                })
-            </div>
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    @Html.ActionLink("Read", "Details", new { id = item.Id }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Delete", "Delete", new {id = item.Id}, new
+                    {
+                        @class = "btn btn-danger",
+                        onclick = "return confirm('Are you sure you wish to delete this Event?');"
+                    })
+                </div>
+            </td>
+        </tr>
+    }
 
 </table>

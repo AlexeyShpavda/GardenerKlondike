@@ -29,7 +29,7 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Note)
+            @Html.Raw(Server.HtmlDecode(item.Note))
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsCompleted)

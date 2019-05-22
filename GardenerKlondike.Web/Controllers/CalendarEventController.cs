@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.Owin;
 namespace GardenerKlondike.Web.Controllers
 {
     [Authorize]
+    [ValidateInput(false)]
     public class CalendarEventController : Controller
     {
         private ICalendarEventRepository CalendarEventRepository { get; }

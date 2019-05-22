@@ -38,7 +38,7 @@
             @Html.DisplayFor(modelItem => item.Subject)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
+            @Html.Raw(Server.HtmlDecode(item.Description))
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Start)

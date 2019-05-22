@@ -14,7 +14,7 @@
         </dt>
 
         <dd>
-            @Html.Raw(Html.Encode(Model.Body).Replace("\n","<br/>"))
+            @Html.Raw(Server.HtmlDecode(Model.Body))
         </dd>
         
         <dt>

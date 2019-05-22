@@ -28,7 +28,7 @@
         <div class="form-group">
             <div class="col-md-8 col-md-offset-2">
                 @Html.LabelFor(model => model.Body, new { @class = "control-label" })
-                @Html.TextAreaFor(model => model.Body, 10, 100, new { @class = "form-control width100" })
+                @Html.TextAreaFor(model => model.Body, 20, 100, new { @class = "form-control width100" })
                 @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
             </div>
         </div>

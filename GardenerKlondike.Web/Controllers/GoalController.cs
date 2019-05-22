@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.Owin;
 namespace GardenerKlondike.Web.Controllers
 {
     [Authorize]
+    [ValidateInput(false)]
     public class GoalController : Controller
     {
         private IGoalRepository GoalRepository { get; }
