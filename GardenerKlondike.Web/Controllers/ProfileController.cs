@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using GardenerKlondike.DAL.Contracts.Repositories;
 using GardenerKlondike.DAL.Repositories;
 using GardenerKlondike.Web.Interfaces.Support.Adapter;
@@ -70,6 +72,29 @@ namespace GardenerKlondike.Web.Controllers
                 var events = await CalendarEventRepository.GetAllAsync().ConfigureAwait(false);
 
                 return Json(events, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(new
+                {
+                    Success = false,
+                    e.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult GetWeather()
+        {
+            try
+            {
+                const string url = "http://api.openweathermap.org/data/2.5/weather?q=Hrodna&APPID=e50efa3ae2201efcb089d47c31c071a8&units=imperial";
+
+                var client = new WebClient();
+                var content = client.DownloadString(url);
+                var serializer = new JavaScriptSerializer();
+                var jsonContent = serializer.Deserialize<object>(content);
+
+                return Json(jsonContent, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {

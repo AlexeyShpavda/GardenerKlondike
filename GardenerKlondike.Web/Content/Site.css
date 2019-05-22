@@ -28,7 +28,6 @@
     border-bottom-right-radius: 20px;
 }
 
-
 .home-main-title {
     padding: 40px 0 30px 0;
     color: whitesmoke;
@@ -63,4 +62,8 @@
     text-transform: uppercase;
     font-weight: bold;
     padding: 10px;
+}
+
+.background-gray {
+    background-color: aliceblue;
 }

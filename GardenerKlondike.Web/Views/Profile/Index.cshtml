@@ -4,14 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="tab-main-header">Profile</h2>
-
-<div class="container">
+<div class="container background-gray">
+    <h2 class="tab-main-header">Profile</h2>
     <div class="row">
         <div class="col-md-3">
             <h3>Events</h3>
             <p>
-                @Html.ActionLink("Add New Event", "Create", "CalendarEvent", null, new {@class = "btn btn-default"})
+                @Html.ActionLink("Add New Event", "Create", "CalendarEvent", null, new { @class = "btn btn-default" })
             </p>
             <table class="table">
                 <tr>
@@ -31,8 +30,8 @@
                         </td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                @Html.ActionLink("Detail", "Details", "CalendarEvent", new {id = item.Id}, new {@class = "btn btn-warning"})
-                                @Html.ActionLink("Edit", "Edit", "CalendarEvent", new {id = item.Id}, new {@class = "btn btn-success"})
+                                @Html.ActionLink("Detail", "Details", "CalendarEvent", new { id = item.Id }, new { @class = "btn btn-warning" })
+                                @Html.ActionLink("Edit", "Edit", "CalendarEvent", new { id = item.Id }, new { @class = "btn btn-success" })
                                 @Html.ActionLink("Delete", "Delete", "CalendarEvent", new {id = item.Id}, new
                                 {
                                     @class = "btn btn-danger",
@@ -71,12 +70,12 @@
 </div>
 
 <link href="~/Content/fullcalendar.min.css" rel="stylesheet" />
-<link href="~/Content/fullcalendar.print.css" rel="stylesheet" media="print"/>
+<link href="~/Content/fullcalendar.print.css" rel="stylesheet" media="print" />
 
 @section Scripts {
     <script src="~/Scripts/moment.min.js"></script>
     <script src="~/Scripts/fullcalendar.min.js"></script>
-    
+
     <script>
         $(document).ready(function () {
             var events = [];
@@ -131,51 +130,87 @@
                     }
                 });
             }
+
+            //$.ajax({
+            //    type: "GET",
+            //    url: "/Profile/GetWeather",
+            //    success: function (data) {
+            //        $("#name").text(data.name);
+            //        $("#temp").text(data.main.temp);
+            //        $("#humidity").text(data.main.humidity);
+            //    },
+            //    error: function (error) {
+            //        alert('failed');
+            //    }
+            //});
         })
     </script>
 }
 
-    <div class="container">
-        <h3>Goals</h3>
-        <p>
-            @Html.ActionLink("Add New Goal", "Create", "Goal", null, new { @class = "btn btn-default" })
-        </p>
-        <table class="table">
-            <tr>
-                <th>
-                    Goal
-                </th>
-                <th>
-                    IsCompleted
-                </th>
-                <th>
-                    Actions
-                </th>
-            </tr>
-
-            @foreach (var item in Model.GoalViewModels)
-            {
+<div class="container background-gray">
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Goals</h3>
+            <p>
+                @Html.ActionLink("Add New Goal", "Create", "Goal", null, new { @class = "btn btn-default" })
+            </p>
+            <table class="table">
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td width="10">
-                        @Html.DisplayFor(modelItem => item.IsCompleted)
-                    </td>
-                    <td>
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            @Html.ActionLink("Details", "Details", "Goal", new { id = item.Id }, new { @class = "btn btn-warning" })
-                            @Html.ActionLink("Edit", "Edit", "Goal", new { id = item.Id }, new { @class = "btn btn-success" })
-                            @Html.ActionLink("Delete", "Delete", "Goal", new {id = item.Id}, new
-                            {
-                                @class = "btn btn-danger",
-                                onclick = "return confirm('Are you sure you wish to delete this Event?');"
-                            })
-                        </div>
-                    </td>
+                    <th>
+                        Goal
+                    </th>
+                    <th>
+                        IsCompleted
+                    </th>
+                    <th>
+                        Actions
+                    </th>
                 </tr>
-            }
 
-        </table>
+                @foreach (var item in Model.GoalViewModels)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td width="10">
+                            @Html.DisplayFor(modelItem => item.IsCompleted)
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                @Html.ActionLink("Details", "Details", "Goal", new { id = item.Id }, new { @class = "btn btn-warning" })
+                                @Html.ActionLink("Edit", "Edit", "Goal", new { id = item.Id }, new { @class = "btn btn-success" })
+                                @Html.ActionLink("Delete", "Delete", "Goal", new {id = item.Id}, new
+                                {
+                                    @class = "btn btn-danger",
+                                    onclick = "return confirm('Are you sure you wish to delete this Event?');"
+                                })
+                            </div>
+                        </td>
+                    </tr>
+                }
 
+            </table>
+        </div>
+        <div class="col-md-4">
+            <h3>Weather</h3>
+            <div id="openweathermap-widget-15">
+            </div>
+        </div>
     </div>
+</div>
+
+<script>
+    window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];
+    window.myWidgetParam.push({ id: 15, cityid: '627904', appid: 'e50efa3ae2201efcb089d47c31c071a8', units: 'metric', containerid: 'openweathermap-widget-15', });
+    (function () {
+        var script = document.createElement('script');
+        script.async = true; script.charset = "utf-8";
+        script.src = "http://openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+</script>
+
+@*<p id="name"></p>
+<p id="temp"></p>
+<p id="humidity"></p>*@
