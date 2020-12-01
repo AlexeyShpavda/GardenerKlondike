@@ -21,25 +21,28 @@
                         Actions
                     </th>
                 </tr>
-
-                @foreach (var item in Model.CalendarEventViewModels)
+                
+                @if (Model != null)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Subject)
-                        </td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                @Html.ActionLink("Detail", "Details", "CalendarEvent", new { id = item.Id }, new { @class = "btn btn-warning" })
-                                @Html.ActionLink("Edit", "Edit", "CalendarEvent", new { id = item.Id }, new { @class = "btn btn-success" })
-                                @Html.ActionLink("Delete", "Delete", "CalendarEvent", new {id = item.Id}, new
-                                {
-                                    @class = "btn btn-danger",
-                                    onclick = "return confirm('Are you sure you wish to delete this Event?');"
-                                })
-                            </div>
-                        </td>
-                    </tr>
+                    foreach (var item in Model.CalendarEventViewModels)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Subject)
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    @Html.ActionLink("Detail", "Details", "CalendarEvent", new { id = item.Id }, new { @class = "btn btn-warning" })
+                                    @Html.ActionLink("Edit", "Edit", "CalendarEvent", new { id = item.Id }, new { @class = "btn btn-success" })
+                                    @Html.ActionLink("Delete", "Delete", "CalendarEvent", new {id = item.Id}, new
+                                    {
+                                        @class = "btn btn-danger",
+                                        onclick = "return confirm('Are you sure you wish to delete this Event?');"
+                                    })
+                                </div>
+                            </td>
+                        </tr>
+                    }
                 }
 
             </table>
@@ -89,7 +92,7 @@
                                 title: v.Subject,
                                 description: v.Description,
                                 start: moment(v.Start),
-                                end: v.END_TO_END != null ? moment(v.End) : null,
+                                end: v.End != null ? moment(v.End) : null,
                                 color: v.ThemeColor,
                                 allDay: v.IsFullDay
                             });
@@ -153,28 +156,31 @@
                         Actions
                     </th>
                 </tr>
-
-                @foreach (var item in Model.GoalViewModels)
+                
+                @if (Model != null)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td width="10">
-                            @Html.DisplayFor(modelItem => item.IsCompleted)
-                        </td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                @Html.ActionLink("Details", "Details", "Goal", new { id = item.Id }, new { @class = "btn btn-warning" })
-                                @Html.ActionLink("Edit", "Edit", "Goal", new { id = item.Id }, new { @class = "btn btn-success" })
-                                @Html.ActionLink("Delete", "Delete", "Goal", new {id = item.Id}, new
-                                {
-                                    @class = "btn btn-danger",
-                                    onclick = "return confirm('Are you sure you wish to delete this Event?');"
-                                })
-                            </div>
-                        </td>
-                    </tr>
+                    foreach (var item in Model.GoalViewModels)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td width="10">
+                                @Html.DisplayFor(modelItem => item.IsCompleted)
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    @Html.ActionLink("Details", "Details", "Goal", new { id = item.Id }, new { @class = "btn btn-warning" })
+                                    @Html.ActionLink("Edit", "Edit", "Goal", new { id = item.Id }, new { @class = "btn btn-success" })
+                                    @Html.ActionLink("Delete", "Delete", "Goal", new {id = item.Id}, new
+                                    {
+                                        @class = "btn btn-danger",
+                                        onclick = "return confirm('Are you sure you wish to delete this Event?');"
+                                    })
+                                </div>
+                            </td>
+                        </tr>
+                    }
                 }
 
             </table>

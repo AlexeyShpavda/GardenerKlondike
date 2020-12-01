@@ -80,6 +80,10 @@ namespace GardenerKlondike.Web.Controllers
 
                 var currentUser = GetCurrentUser();
                 calendarEventViewModel.User = currentUser.Email;
+                if (calendarEventViewModel.End.HasValue)
+                {
+                    calendarEventViewModel.End = calendarEventViewModel.End?.AddDays(1);
+                }
 
                 var calendarEventEntity = Mapper.Map(calendarEventViewModel);
 
@@ -122,6 +126,11 @@ namespace GardenerKlondike.Web.Controllers
                 if (!ModelState.IsValid)
                 {
                     return View(calendarEventViewModel);
+                }
+
+                if (calendarEventViewModel.End.HasValue)
+                {
+                    calendarEventViewModel.End = calendarEventViewModel.End?.AddDays(1);
                 }
 
                 var calendarEventEntity = Mapper.Map(calendarEventViewModel);
